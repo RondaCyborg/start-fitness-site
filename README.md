@@ -56,3 +56,7 @@ Para publicar no Netlify, você pode arrastar a pasta completa ou conectar um re
 - horário exibido de segunda a sexta: 05:30–11:30 / 14:30–21:30
 
 Valores e horários de fim de semana não são inventados: o site direciona o visitante para confirmação pelo WhatsApp.
+
+
+## Atualização
+A fachada tratada foi adicionada em `assets/fachada-start-fitness.webp` e já é usada automaticamente pelo site.
