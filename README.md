@@ -58,5 +58,15 @@ Para publicar no Netlify, você pode arrastar a pasta completa ou conectar um re
 Valores e horários de fim de semana não são inventados: o site direciona o visitante para confirmação pelo WhatsApp.
 
 
-## Atualização
-A fachada tratada foi adicionada em `assets/fachada-start-fitness.webp` e já é usada automaticamente pelo site.
+## Modo demonstração comercial
+
+Esta versão está preparada apenas para apresentação ao cliente.
+
+Proteções aplicadas:
+- meta `noindex` e `nofollow`
+- `robots.txt` bloqueando rastreamento
+- faixa fixa de demonstração
+- botões de WhatsApp desativados
+- aviso ao clicar em um CTA de contato
+
+Depois do fechamento, a proteção pode ser retirada e os contatos reais voltam a funcionar.

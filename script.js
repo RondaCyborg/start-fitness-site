@@ -1,3 +1,5 @@
+const DEMO_MODE = true;
+
 const WHATSAPP_NUMBER = "5585999411884";
 
 const messages = {
@@ -28,6 +30,29 @@ document.querySelectorAll("[data-goal-whatsapp]").forEach((link) => {
   const key = link.dataset.goalWhatsapp;
   link.href = whatsappUrl(goalMessages[key] || messages.floating);
 });
+
+
+/* Proteção da demonstração comercial */
+const demoToast = document.getElementById("demoToast");
+let demoToastTimer;
+
+function showDemoToast() {
+  if (!demoToast) return;
+  demoToast.classList.add("show");
+  clearTimeout(demoToastTimer);
+  demoToastTimer = setTimeout(() => demoToast.classList.remove("show"), 3200);
+}
+
+if (DEMO_MODE) {
+  document.querySelectorAll("[data-whatsapp], [data-goal-whatsapp]").forEach((link) => {
+    link.setAttribute("aria-label", "Botão demonstrativo — WhatsApp liberado na versão final");
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      showDemoToast();
+    });
+  });
+}
 
 /* Header + mobile menu */
 const header = document.querySelector(".site-header");
