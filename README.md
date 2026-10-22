@@ -1,72 +1,27 @@
-# Start Fitness Wellness — V3 “START MOTION”
+# Academia Demo — modelo fictício da Ronda Booster
 
-Site independente, sem Floot e sem framework pesado. Construído em HTML + CSS + JavaScript puro.
+**Este site é um exercício de portfólio. Não representa, divulga nem possui vínculo com qualquer academia existente.**
 
-## O que mudou nesta versão
+## Objetivo
+Demonstrar, com uma academia *fictícia*, como seria uma landing page com animações e componentes interativos desenvolvida em HTML, CSS e JavaScript.
 
-A V3 cria uma identidade de movimento própria para a academia:
+## Recursos de interface
+- Hero com animação de rolagem
+- Cards com efeitos de cursor
+- Manifesto com palavras reveladas por scroll
+- Seção de objetivos com progressão interativa
+- Galeria com ilustrações geradas por CSS (sem fotos reais)
+- Quadro interativo fictício (sem horários de empresas)
+- FAQ e botões demonstrativos (sem contato real)
+- Design responsivo e suporte a `prefers-reduced-motion`
 
-- Hero com expansão controlada pelo scroll
-- Cards com spotlight que acompanha o cursor
-- Manifesto com palavras reveladas conforme a rolagem
-- Objetivos em narrativa “sticky scroll”
-- Galeria interativa estilo accordion
-- Marquee de marca
-- Horários interativos
-- Status “aberto agora”
-- FAQ
-- WhatsApp contextual
-- Layout mobile-first
-- Respeita `prefers-reduced-motion`
+## Privacidade e propriedade de marca
+- Nenhum nome comercial real, endereço, telefone, perfil social ou avaliação é exibido.
+- O modelo não tem dados estruturados de estabelecimentos reais.
+- A foto de fachada de um comércio foi excluída do estado atual do repositório.
+- A página pública tem aviso inequívoco de projeto fictício e está marcada com `noindex`.
+- **Nota importante:** como o repositório foi público, versões antigas e imagens podem continuar acessíveis no histórico Git ou em caches. Para eliminar essa exposição persistente, será preciso avaliar um novo repositório privado com histórico limpo e a desativação do endereço antigo.
+- As interações que simulam contato não realizam envios.
 
-Não usa Three.js, GSAP, Spline ou bibliotecas pesadas.
-
-## Fotos
-
-A estrutura está pronta para estas imagens:
-
-- `assets/fachada-start-fitness.webp`
-- `assets/galeria-musculacao.webp`
-- `assets/galeria-equipamentos.webp`
-- `assets/galeria-ambiente.webp`
-
-Se uma foto ainda não existir, o site mostra um visual de fallback em vez de quebrar o layout.
-
-### Recomendação para fotos
-
-- WebP
-- largura entre 1400 e 1800 px
-- qualidade 75–82%
-- idealmente abaixo de 350 KB cada
-- não usar Base64 no HTML
-
-## Abrir
-
-Extraia o ZIP e abra `index.html`.
-
-Para publicar no Netlify, você pode arrastar a pasta completa ou conectar um repositório GitHub.
-
-## Dados do site
-
-- Academia Start Fitness - Wellness
-- Rua Nossa Senhora da Palma, 1273 — Centro — Baturité/CE
-- WhatsApp: (85) 99941-1884
-- Instagram: @academia.start_fitness
-- avaliação exibida: 4,7/5 (44 avaliações)
-- horário exibido de segunda a sexta: 05:30–11:30 / 14:30–21:30
-
-Valores e horários de fim de semana não são inventados: o site direciona o visitante para confirmação pelo WhatsApp.
-
-
-## Modo demonstração comercial
-
-Esta versão está preparada apenas para apresentação ao cliente.
-
-Proteções aplicadas:
-- meta `noindex` e `nofollow`
-- `robots.txt` bloqueando rastreamento
-- faixa fixa de demonstração
-- botões de WhatsApp desativados
-- aviso ao clicar em um CTA de contato
-
-Depois do fechamento, a proteção pode ser retirada e os contatos reais voltam a funcionar.
+## Publicação
+Hospedagem no Render como site estático, pasta `.`.
