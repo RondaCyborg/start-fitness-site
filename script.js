@@ -1,58 +1,25 @@
+// Modelo fictício para portfólio. Nenhuma academia, número ou endereço real está associado.
 const DEMO_MODE = true;
 
-const WHATSAPP_NUMBER = "5585999411884";
-
-const messages = {
-  header: "Olá! Vi o site da Start Fitness e gostaria de saber mais sobre planos e matrícula.",
-  menu: "Olá! Vi o site da Start Fitness e quero tirar algumas dúvidas.",
-  hero: "Olá! Vi o site da Start Fitness e quero conhecer a academia. Pode me passar informações sobre planos e matrícula?",
-  schedule: "Olá! Vi o site da Start Fitness e gostaria de confirmar os horários de funcionamento.",
-  final: "Olá! Quero começar na Start Fitness. Pode me passar informações sobre planos, valores e matrícula?",
-  floating: "Olá! Vi o site da Start Fitness e gostaria de mais informações."
-};
-
-const goalMessages = {
-  massa: "Olá! Meu objetivo é ganhar massa e gostaria de saber como começar na Start Fitness.",
-  emagrecer: "Olá! Meu objetivo é emagrecer e gostaria de saber como começar na Start Fitness.",
-  condicionamento: "Olá! Meu objetivo é melhorar o condicionamento e gostaria de informações sobre a Start Fitness.",
-  rotina: "Olá! Quero criar uma rotina de treinos e gostaria de saber mais sobre a Start Fitness."
-};
-
-const whatsappUrl = (message) =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-
-document.querySelectorAll("[data-whatsapp]").forEach((link) => {
-  const key = link.dataset.whatsapp;
-  link.href = whatsappUrl(messages[key] || messages.floating);
-});
-
-document.querySelectorAll("[data-goal-whatsapp]").forEach((link) => {
-  const key = link.dataset.goalWhatsapp;
-  link.href = whatsappUrl(goalMessages[key] || messages.floating);
-});
-
-
-/* Proteção da demonstração comercial */
+/* Nenhum link de atendimento real é habilitado nesta demonstração. */
 const demoToast = document.getElementById("demoToast");
 let demoToastTimer;
-
 function showDemoToast() {
   if (!demoToast) return;
   demoToast.classList.add("show");
   clearTimeout(demoToastTimer);
   demoToastTimer = setTimeout(() => demoToast.classList.remove("show"), 3200);
 }
-
-if (DEMO_MODE) {
-  document.querySelectorAll("[data-whatsapp], [data-goal-whatsapp]").forEach((link) => {
-    link.setAttribute("aria-label", "Botão demonstrativo — WhatsApp liberado na versão final");
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      showDemoToast();
-    });
+document.querySelectorAll("[data-whatsapp], [data-goal-whatsapp]").forEach(link => {
+  link.href = "#";
+  link.removeAttribute("target");
+  link.setAttribute("aria-label", "Interação ilustrativa — não existe WhatsApp de academia");
+  link.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
+    showDemoToast();
   });
-}
+});
 
 /* Header + mobile menu */
 const header = document.querySelector(".site-header");
@@ -204,110 +171,36 @@ galleryItems.forEach((item) => {
   item.addEventListener("click", () => activateGalleryItem(item));
 });
 
-/* Interactive schedule */
+/* Quadro de horários fictício: interativo, mas sem dados de qualquer academia real. */
 const weekdays = {
-  1: "SEGUNDA-FEIRA",
-  2: "TERÇA-FEIRA",
-  3: "QUARTA-FEIRA",
-  4: "QUINTA-FEIRA",
-  5: "SEXTA-FEIRA",
-  6: "SÁBADO",
-  0: "DOMINGO"
+  1: "SEGUNDA-FEIRA", 2: "TERÇA-FEIRA", 3: "QUARTA-FEIRA", 4: "QUINTA-FEIRA",
+  5: "SEXTA-FEIRA", 6: "SÁBADO", 0: "DOMINGO"
 };
-
 const dayButtons = document.querySelectorAll(".day-button");
 const selectedDayLabel = document.getElementById("selectedDayLabel");
 const scheduleTimes = document.getElementById("scheduleTimes");
 const scheduleNote = document.getElementById("scheduleNote");
-
 function renderSchedule(day) {
   if (!selectedDayLabel || !scheduleTimes || !scheduleNote) return;
-  selectedDayLabel.textContent = weekdays[day];
-
-  if (day >= 1 && day <= 5) {
-    scheduleTimes.innerHTML = `
-      <div><small>MANHÃ</small><strong>05:30</strong><span>até</span><strong>11:30</strong></div>
-      <div class="schedule-rule"></div>
-      <div><small>TARDE / NOITE</small><strong>14:30</strong><span>até</span><strong>21:30</strong></div>
-    `;
-    scheduleNote.textContent = "Horários podem sofrer alterações em feriados. Confirme com a equipe quando necessário.";
-  } else {
-    scheduleTimes.innerHTML = `
-      <div><small>FIM DE SEMANA</small><strong>CONFIRME</strong><span></span><strong></strong></div>
-      <div class="schedule-rule"></div>
-      <div><small>INFORMAÇÃO</small><strong>WHATSAPP</strong><span></span><strong></strong></div>
-    `;
-    scheduleNote.textContent = "Não exibimos um horário de fim de semana sem confirmação pública. Consulte a equipe pelo WhatsApp.";
-  }
+  selectedDayLabel.textContent = weekdays[day] || "DIA";
+  scheduleTimes.innerHTML =
+    '<div><small>EXEMPLO</small><strong>HORÁRIO</strong><span>—</span><strong>FICTÍCIO</strong></div>' +
+    '<div class="schedule-rule"></div>' +
+    '<div><small>ATENDIMENTO</small><strong>DEMO</strong><span></span><strong></strong></div>';
+  scheduleNote.textContent = "Este quadro é ilustrativo. Nenhum horário de empresa real está sendo divulgado.";
 }
-
-dayButtons.forEach((button) => {
+dayButtons.forEach(button => {
   button.addEventListener("click", () => {
-    dayButtons.forEach((item) => item.classList.remove("active"));
+    dayButtons.forEach(item => item.classList.remove("active"));
     button.classList.add("active");
     renderSchedule(Number(button.dataset.day));
   });
 });
-
-/* Live status fixed to America/Fortaleza, the timezone used in Baturité/CE. */
+renderSchedule(1);
 const liveStatus = document.getElementById("liveStatus");
 const liveStatusDetail = document.getElementById("liveStatusDetail");
-const minutes = (h, m) => h * 60 + m;
-
-function getFortalezaNow() {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/Fortaleza",
-    weekday: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-    hourCycle: "h23"
-  }).formatToParts(new Date());
-
-  const values = Object.fromEntries(parts.map(({ type, value }) => [type, value]));
-  const dayMap = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
-
-  return {
-    day: dayMap[values.weekday],
-    hour: Number(values.hour),
-    minute: Number(values.minute)
-  };
-}
-
-function updateLiveStatus() {
-  const now = getFortalezaNow();
-  const day = now.day;
-  const current = minutes(now.hour, now.minute);
-
-  if (liveStatus && liveStatusDetail) {
-    if (day >= 1 && day <= 5) {
-      const morningOpen = current >= minutes(5, 30) && current < minutes(11, 30);
-      const afternoonOpen = current >= minutes(14, 30) && current < minutes(21, 30);
-
-      if (morningOpen || afternoonOpen) {
-        liveStatus.textContent = "Aberto agora";
-        liveStatusDetail.textContent = afternoonOpen ? "Hoje até 21:30" : "Turno da manhã até 11:30";
-      } else if (current < minutes(5, 30)) {
-        liveStatus.textContent = "Abre às 05:30";
-        liveStatusDetail.textContent = "Primeiro turno de hoje";
-      } else if (current < minutes(14, 30)) {
-        liveStatus.textContent = "Retorna às 14:30";
-        liveStatusDetail.textContent = "Intervalo entre os turnos";
-      } else {
-        liveStatus.textContent = "Fechado agora";
-        liveStatusDetail.textContent = "Próximo turno: 05:30";
-      }
-    } else {
-      liveStatus.textContent = "Consulte hoje";
-      liveStatusDetail.textContent = "Fim de semana: confirme no WhatsApp";
-    }
-  }
-
-  dayButtons.forEach((item) => item.classList.toggle("active", Number(item.dataset.day) === day));
-  renderSchedule(day);
-}
-
-updateLiveStatus();
-setInterval(updateLiveStatus, 60000);
+if (liveStatus) liveStatus.textContent = "Academia fictícia";
+if (liveStatusDetail) liveStatusDetail.textContent = "Modelo demonstrativo • sem horários reais";
 
 /* Standard reveal animations */
 const revealItems = document.querySelectorAll(".reveal");
