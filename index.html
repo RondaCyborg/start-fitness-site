@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#0d0d0f" />
   <meta name="description" content="Demonstração fictícia de site para academia: animações, galeria ilustrativa e seções interativas. Não representa nenhum estabelecimento real." />
+  <script>
+    // Compatibilidade: antigo subdomínio com nome de terceiro é redirecionado para a demo genérica.
+    if (window.location.hostname === 'start-fitness.onrender.com') {
+      window.location.replace('https://ronda-demo-academia.onrender.com/' + window.location.search + window.location.hash);
+    }
+  </script>
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
   <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
   <meta property="og:title" content="Academia Demo | Exemplo fictício de site" />
